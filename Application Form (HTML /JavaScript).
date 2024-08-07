@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link href="C:/Users/admin/eclipse-workspace/SampleProject/src/main/webapp/CssFile.css" type="text/css" rel="stylesheet"/>
+</head>
+
+<body>
+<div id = "div1" style="text-align:center">
+  
+  <h1>New Job Application Form</h1>
+  <br><br>
+    
+    <div id="FullName">
+    <label for="first" id="firstLabel">First Name</label> 
+     <input type="text" placeholder="First Name" id="firstName" name="firstName"/>
+    <label for="Last" id="LastLabel">Last Name</label> 
+      <input type="text" placeholder="Last Name" id="lastName" name="lastName"/>
+    </div> 
+    
+    <br><br>
+    
+     <div id="contactInfo"> 
+     <label for="emailLabel" id="emailLabel">Email</label> 
+     <input type="email" placeholder="Email Id" id="emailID" name="emailID"/>
+     <label for="contactLable" id="contactLabel">Contact</label> 
+      <input type="tel" placeholder="Contact" id="contact" name="contact"/>
+    </div>
+    
+    <br><br><br><br>
+    
+    <label for="position" id="positionID">What position are you applying</label>
+    <select id="selectOption">
+    <option>Job 1</option>
+    <option>Job 2</option>
+    <option>Job 3</option>
+    </select>
+    
+    <br><br>
+    
+    <label for="Date" id="datelabel">Available start date: </label>
+    <input type="date" id="date" name="date">
+
+    <br><br>
+   
+        <legend>What is your current employment status</legend>
+        <input type="radio" name="status" value="employed" id="employed"/>
+        <label for="employed">Employed</label>
+        
+        <input type="radio" name="status" value="unemployed" id="unemployed"/>
+        <label for="unemployed">Unemployed</label>
+    
+        <input type="radio" name="status" value="selfEmployed" id="selfEmployed"/>
+        <label for="selfEmployed">Self-Employed</label>
+        
+        <input type="radio" name="status" value="student" id="student"/>
+        <label for="student">Student</label>
+   
+   
+   <br><br>
+   
+      <label for="resume" id="resume">How do you prefer to submit your resume?</label><br>
+      <input type="radio" name="resume" id="upload" value="upload"/>
+      <label for="upload">Upload File</label>
+      <input type="radio" name="resume" id="url" value="url"/>
+      <label for="url">Provide URL</label>
+   
+      <br><br><br><br><br>
+      
+      <label for="file">Upload File</label>
+      <input type="file" name="file" id="file"/>
+      
+      <br><br><br>
+   
+    <div id="submit">
+    <button type="button" id="int-button">Submit</button>
+    </div>
+  </div>  
+ 
+ <div id="div2">
+   <table border=1 id="tableInput">
+  <tr>
+  <th>First Name</th>
+   <th>Last Name</th>
+    <th>Email Id</th>
+      <th>Contact Number</th>
+       <th>Position</th>
+        <th>Date</th>
+        <th>Status</th>
+        <th>Resume</th>
+        <th>Uploaded</th>
+        <th></th>
+  </tr>
+  </table>
+ </div>
+ 
+ 
+ 
+ <script>
+var button = document.getElementById("int-button");
+var firstNameInput = document.getElementById("firstName");
+var lastName = document.getElementById("lastName");
+var  emailId = document.getElementById("emailID");
+var contact = document.getElementById("contact");
+var positionInput = document.getElementById("selectOption");
+var dateInput = document.getElementById("date");
+var fileInput = document.getElementById("file");
+var table = document.getElementById("tableInput");
+
+
+function getEmploymentStatus(){
+	var statusInpt = document.getElementsByName("status");
+	for(var statusLoop of statusInpt){
+		if(statusLoop.checked){
+			return statusLoop.nextElementSibling.textContent;
+		}
+	}
+	return " ";
+}
+
+function getResumeMethod(){
+	var resumeF = document.getElementsByName("resume");
+	for(var resumeLoop of resumeF){
+		if(resumeLoop.checked){
+			return resumeLoop.nextElementSibling.textContent;
+		}
+	}
+	return " ";
+}
+
+function myfunction(){
+	var firstName = firstNameInput.value;
+	var lastNameInput = lastName.value;
+	var  emailIdInput = emailID.value;
+	var contactInput = contact.value;
+	var dateF = dateInput.value;
+	var positionF = positionInput.value;
+	//var statusF = statusInput.value;
+	var employmentF = getEmploymentStatus();
+	var resumesF = getResumeMethod();
+	var resumeUploaded = fileInput.value;
+	
+	
+	var row = table.insertRow();
+	 var cell1 = row.insertCell(0);
+	 var cell2 = row.insertCell(1);
+	 var cell3 = row.insertCell(2);
+	 var cell4 = row.insertCell(3);
+	 var cell5 = row.insertCell(4);
+	 var cell6 = row.insertCell(5);
+	 var cell7 = row.insertCell(6);
+	 var cell8 = row.insertCell(7);
+	 var cell9 = row.insertCell(8);
+	 
+	 
+	cell1.innerHTML = firstName;
+	cell2.innerHTML = lastNameInput;
+	cell3.innerHTML = emailIdInput;
+	cell4.innerHTML = contactInput;
+	cell5.innerHTML = positionF;
+	cell6.innerHTML = dateF;
+	cell7.innerHTML = employmentF;
+	cell8.innerHTML = resumesF;
+	cell9.innerHTML = resumeUploaded;
+	//cell8.innerHTML = employmentF; 
+}
+
+
+button.addEventListener("click", myfunction);
+
+</script>
+  
+</body>
+</html>
